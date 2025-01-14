@@ -1,0 +1,38 @@
+.container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    background-color: #fff0f5; /* Rosa pastel */
+  }
+  
+  .title {
+    font-size: 2.5rem;
+    color: #7ac49f; /* Verde pastel */
+    margin-bottom: 20px;
+  }
+  
+  .description {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 30px;
+  }
+  
+  .btn {
+    padding: 12px 24px;
+    font-size: 1rem;
+    color: white;
+    background-color: #7ac49f; /* Verde pastel */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn:hover {
+    background-color: #68b38a; /* Verde pastel más oscuro */
+  }
+  

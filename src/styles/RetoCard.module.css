@@ -1,0 +1,51 @@
+.card {
+    padding: 20px;
+    margin: 20px 0;
+    border: 2px solid #7ac49f; /* Verde pastel */
+    border-radius: 10px;
+    background-color: #ffe4e1; /* Rosa pastel claro */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .card h2 {
+    font-size: 1.8rem;
+    color: #7ac49f; /* Verde pastel */
+    margin-bottom: 15px;
+  }
+  
+  .card p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 20px;
+  }
+  
+  .card input {
+    padding: 10px;
+    width: 80%;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+  }
+  
+  .card button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: white;
+    background-color: #7ac49f; /* Verde pastel */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .card button:hover {
+    background-color: #68b38a; /* Verde pastel más oscuro */
+  }
+  
+  .card button:disabled {
+    background-color: #a8d5bf;
+    cursor: not-allowed;
+  }
+  
