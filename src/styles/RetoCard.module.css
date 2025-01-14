@@ -48,4 +48,38 @@
     background-color: #a8d5bf;
     cursor: not-allowed;
   }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 80px);
+    gap: 10px;
+    justify-content: center;
+    margin: 20px 0;
+  }
+  
+  .cardBack {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #7ac49f; /* Verde pastel */
+    color: white;
+    font-size: 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 2px solid #fff;
+  }
+  
+  .cardFlipped {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffe4e1; /* Rosa pastel claro */
+    color: #555;
+    font-size: 1.5rem;
+    border-radius: 8px;
+    border: 2px solid #7ac49f;
+  }
   
