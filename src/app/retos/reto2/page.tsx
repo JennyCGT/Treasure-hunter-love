@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import styles from '../../../styles/RetoCard.module.css';
+import { useRouter } from 'next/navigation';
 
 interface Card {
   id: number;
@@ -14,13 +15,22 @@ export default function Reto2() {
   const [cards, setCards] = useState<Card[]>([]);
   const [flippedCards, setFlippedCards] = useState<number[]>([]);
   const [feedback, setFeedback] = useState('');
-
+  const [attempts, setAttempts] = useState(0);
+  const router = useRouter();
+  const maxAttempts = 10;
   useEffect(() => {
-    const initialValues = ['🍎', '🍌', '🍇', '🍒'];
+    if (localStorage.getItem('reto1Completed') !== 'true') {
+        router.push('/');
+      }
+    // const initialValues = ['😘','💋', '😍','🎁' ,'😻', '🍒','💘','🌻','🔋','♥'];
+    const initialValues = ['😘','💋'];
     const shuffledCards = [...initialValues, ...initialValues]
       .sort(() => Math.random() - 0.5)
       .map((value, index) => ({ id: index, value, flipped: false, matched: false }));
     setCards(shuffledCards);
+  }, []);
+  useEffect(() => {
+    localStorage.setItem('reto2Completed', 'false');
   }, []);
 
   const handleFlip = (index: number) => {
@@ -40,7 +50,8 @@ export default function Reto2() {
   const checkMatch = (flipped: number[]) => {
     const [firstIndex, secondIndex] = flipped;
     const newCards = [...cards];
-
+    let newAttempts = attempts + 1;
+    setAttempts(newAttempts);
     if (newCards[firstIndex].value === newCards[secondIndex].value) {
       newCards[firstIndex].matched = true;
       newCards[secondIndex].matched = true;
@@ -55,8 +66,13 @@ export default function Reto2() {
     setFlippedCards([]);
 
     if (newCards.every(card => card.matched)) {
-      setFeedback('¡Felicidades, completaste el reto de memoria!');
-    }
+        localStorage.setItem('reto2Completed','true')
+        setFeedback('¡Felicidades, completaste el reto de memoria!');
+        setTimeout(()=> router.push('/retos/reto3'),1000)
+    }else if (newAttempts >= maxAttempts) {
+        setFeedback('Has alcanzado el número máximo de intentos. Volviendo a empezar...');
+        setTimeout(() => window.location.reload(), 1500);
+      }
   };
 
   return (
