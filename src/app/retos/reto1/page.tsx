@@ -1,5 +1,7 @@
+"use client";
+
 import { useState } from 'react';
-import RetoCard from '../../component/RetoCard';
+import RetoCard from '@/component/RetoCard';
 
 export default function Reto1() {
   const [respuesta, setRespuesta] = useState('');

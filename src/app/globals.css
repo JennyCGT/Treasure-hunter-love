@@ -14,8 +14,14 @@
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-}
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa; /* Cambia este color si deseas otro fondo */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  
+  html, body {
+    height: 100%;
+  }
+  
