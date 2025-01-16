@@ -57,7 +57,7 @@ export default function Reto5() {
     if (isCompleted) {
       setFeedback('¡Correcto! Has completado el puzzle. 💖');
       localStorage.setItem('reto5Completed', 'true');
-      setTimeout(() => router.push('/final'), 1500);
+      setTimeout(() => router.push('/retos/reto6'), 1500);
     }
   };
 

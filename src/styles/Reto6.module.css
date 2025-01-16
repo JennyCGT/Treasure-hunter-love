@@ -1,3 +1,5 @@
+@import 'leaflet/dist/leaflet.css';
+
 .card {
     padding: 20px;
     margin: 20px 0;
@@ -175,9 +177,15 @@
     border-color: #7ac49f; /* Verde pastel */
   }
   .mapContainer {
+    height: 400px; /* Define una altura específica */
+    width: 100%; /* Asegura que ocupe todo el ancho disponible */
     margin: 20px 0;
-    border: 2px solid #ccc;
+    border: 2px solid #ccc; /* Opcional: estilo para resaltar el contenedor */
     border-radius: 8px;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f9f9f9; /* Opcional: fondo claro */
   }
   
