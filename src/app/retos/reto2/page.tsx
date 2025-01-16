@@ -18,17 +18,19 @@ export default function Reto2() {
   const [attempts, setAttempts] = useState(0);
   const router = useRouter();
   const maxAttempts = 10;
+
   useEffect(() => {
     if (localStorage.getItem('reto1Completed') !== 'true') {
-        router.push('/');
-      }
-    // const initialValues = ['😘','💋', '😍','🎁' ,'😻', '🍒','💘','🌻','🔋','♥'];
-    const initialValues = ['😘','💋'];
+      router.push('/');
+    }
+
+    const initialValues = ['😘', '💋', '😍', '🎁', '😻', '🍒', '💘', '🌻'];
     const shuffledCards = [...initialValues, ...initialValues]
       .sort(() => Math.random() - 0.5)
       .map((value, index) => ({ id: index, value, flipped: false, matched: false }));
     setCards(shuffledCards);
   }, []);
+
   useEffect(() => {
     localStorage.setItem('reto2Completed', 'false');
   }, []);
@@ -50,35 +52,41 @@ export default function Reto2() {
   const checkMatch = (flipped: number[]) => {
     const [firstIndex, secondIndex] = flipped;
     const newCards = [...cards];
-    let newAttempts = attempts + 1;
+    let newAttempts = attempts;
     setAttempts(newAttempts);
+
     if (newCards[firstIndex].value === newCards[secondIndex].value) {
       newCards[firstIndex].matched = true;
       newCards[secondIndex].matched = true;
-      setFeedback('¡Es un match!');
+      setFeedback('¡Es un match! ✨');
     } else {
+      newAttempts= newAttempts+1;
+      setAttempts(newAttempts);
       newCards[firstIndex].flipped = false;
       newCards[secondIndex].flipped = false;
-      setFeedback('No coinciden, intenta de nuevo.');
+      setFeedback('No coinciden, intenta de nuevo. ❌');
     }
 
     setCards(newCards);
     setFlippedCards([]);
 
-    if (newCards.every(card => card.matched)) {
-        localStorage.setItem('reto2Completed','true')
-        setFeedback('¡Felicidades, completaste el reto de memoria!');
-        setTimeout(()=> router.push('/retos/reto3'),1000)
-    }else if (newAttempts >= maxAttempts) {
-        setFeedback('Has alcanzado el número máximo de intentos. Volviendo a empezar...');
-        setTimeout(() => window.location.reload(), 1500);
-      }
+    if (newCards.every((card) => card.matched)) {
+      localStorage.setItem('reto2Completed', 'true');
+      setFeedback('¡Felicidades, completaste el reto de memoria! 💖');
+      setTimeout(() => router.push('/retos/reto3'), 1500);
+    } else if (newAttempts >= maxAttempts) {
+      setFeedback('Has alcanzado el número máximo de intentos. Volviendo a empezar...');
+      setTimeout(() => window.location.reload(), 1500);
+    }
   };
 
   return (
     <div className={styles.card}>
-      <h2>Reto 2: Juego de Memoria</h2>
-      <p>Encuentra todas las parejas de cartas iguales.</p>
+      <h2 className={styles.title}>💖 Reto 2: Juego de Memoria</h2>
+      <p className={styles.description}>
+        Encuentra todas las parejas de cartas iguales. A veces, unir las piezas correctas es como encontrar
+        a la persona que complementa tu vida. 💑
+      </p>
       <div className={styles.grid}>
         {cards.map((card, index) => (
           <div
@@ -92,7 +100,8 @@ export default function Reto2() {
           </div>
         ))}
       </div>
-      <p>{feedback}</p>
+      <p className={styles.feedback}>{feedback}</p>
+      <p className={styles.attempts}>Intentos: {attempts} / {maxAttempts}</p>
     </div>
   );
 }

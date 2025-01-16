@@ -6,6 +6,11 @@
     background-color: #ffe4e1; /* Rosa pastel claro */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
   }
   
   .card h2 {
@@ -98,5 +103,75 @@
     font-family: 'Courier New', Courier, monospace;
     text-align: left;
     margin-bottom: 15px;
+  }
+  
+  .imageContainer {
+    margin: 20px 0;
+  }
+  
+  .image {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .feedback {
+    margin-top: 10px;
+    font-size: 1.1rem;
+    color: #333;
+  }
+  
+  .hintBtn {
+    margin-top: 20px;
+    padding: 8px 15px;
+    font-size: 0.9rem;
+    background-color: #6c757d;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .hintBtn:hover {
+    background-color: #5a6268;
+  }
+  
+  .hint {
+    margin-top: 10px;
+    font-size: 1rem;
+    color: #555;
+    background-color: #e9ecef;
+    padding: 10px;
+    border-radius: 5px;
+  }
+
+.attempts {
+    margin-top: 10px;
+    font-size: 1rem;
+    color: #555;
+  }
+
+  .gridImage {
+    display: grid;
+    grid-template-columns: repeat(3, 80px);
+    gap: 5px;
+    justify-content: center;
+    margin: 20px 0;
+  }
+  
+  .tileImage {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 2px solid #ccc;
+  }
+  
+  .tileImage:hover {
+    border-color: #7ac49f; /* Verde pastel */
   }
   

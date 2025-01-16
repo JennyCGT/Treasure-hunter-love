@@ -4,24 +4,24 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from '../../../styles/RetoCard.module.css';
 
-export default function Reto3() {
+export default function Reto4() {
   const [answerInput, setAnswerInput] = useState('');
   const [feedback, setFeedback] = useState('');
-  const router = useRouter();
   const [showHint, setShowHint] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
-    if (localStorage.getItem('reto2Completed') !== 'true') {
+    if (localStorage.getItem('reto3Completed') !== 'true') {
       router.push('/');
     }
   }, [router]);
 
   const checkAnswer = () => {
-    const correctAnswer = 'Hola Cristhian, Te Quiero Te Quiero  <3';
+    const correctAnswer = 'Sorry por la mision, pero eres my aventura favorita.';
     if (answerInput.trim().toLowerCase() === correctAnswer.toLowerCase()) {
-      setFeedback('¡Correcto! 🎉 Has completado el reto de programación.');
-      localStorage.setItem('reto3Completed', 'true');
-      setTimeout(() => router.push('/retos/reto4'), 1500);
+      setFeedback('¡Correcto! 🎉 Has completado el reto de decodificación.');
+      localStorage.setItem('reto4Completed', 'true');
+      setTimeout(() => router.push('/retos/reto5'), 1500);
     } else {
       setFeedback('❌ La respuesta no es correcta, inténtalo de nuevo.');
     }
@@ -29,30 +29,13 @@ export default function Reto3() {
 
   return (
     <div className={styles.card}>
-      <h2 className={styles.title}>💻 Reto 3: Desafío de Programación</h2>
+      <h2 className={styles.title}>🔐 Reto 4: Decodificación de un Mensaje</h2>
       <p className={styles.description}>
-        Este reto es especial. Quiero que, por un momento, entres en mi mundo, en aquello que amo hacer: programar.
-        Porque así como en el código buscamos siempre la solución perfecta, en la vida también busco a alguien que
-        complemente mi mundo. ❤️
-      </p>
-
-      <p className={styles.instructions}>
-        Observa el siguiente código de Python y escribe cuál sería la salida al ejecutarlo si ingresas el nombre <strong>"Cristhian"</strong>:
+        Decodifica el siguiente mensaje y escribe el resultado. A veces, los mensajes más importantes están ocultos y necesitan un poco de esfuerzo para ser descubiertos. 😉
       </p>
       
       <pre className={styles.codeBlock}>
-        {`def mensaje(nombre):
-    saludo = "Hola " + nombre
-    def anidado(repeticiones):
-        constante = "Te Quiero"
-        resultado = []
-        for i in range(repeticiones):
-            resultado.append(constante)
-        return saludo + ", " + " ".join(resultado)
-    return anidado(2)
-
-nombre_usuario = input("Ingresa tu nombre: ")
-print(mensaje(nombre_usuario), ' <3')`}
+        U29ycnkgcG9yIGxhIG1pc2lvbiwgcGVybyBlcmVzIG15IGF2ZW50dXJhIGZhdm9yaXRhLg==
       </pre>
 
       <input
@@ -68,6 +51,12 @@ print(mensaje(nombre_usuario), ' <3')`}
       </button>
 
       <p className={styles.feedback}>{feedback}</p>
+
+      {/* Frase bonita */}
+      <p className={styles.message}>
+        "Así como este mensaje esta oculto y necesitas decodificarlo, a veces las palabras más importantes no se dicen directamente, sino que se descubren con cariño y dedicación. Quiero que sepas que, aunque pueda ser difícil de descifrar a veces, lo que siento por ti es claro: te quiero muchisimo, eres mi aventura favorita." ❤️
+      </p>
+
       {/* Botón para mostrar pista */}
       <button onClick={() => setShowHint(!showHint)} className={styles.hintBtn}>
         {showHint ? 'Ocultar Pista' : 'Mostrar Pista'}
@@ -75,7 +64,7 @@ print(mensaje(nombre_usuario), ' <3')`}
 
       {showHint && (
         <p className={styles.hint}>
-          💡 Pista: ¡ Revisa los espacios que dejas!
+          💡 Pista: Puedes usar alguna herramienta online para decodificar. Usa 64 😉
         </p>
       )}
     </div>
