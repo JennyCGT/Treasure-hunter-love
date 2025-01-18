@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from 'next/navigation';
-import Image from 'next/image';
+// import Image from 'next/image';
 import styles from './page.module.css';
 // import bienvenida from '/public/images/bienvenida.jpeg';
 
@@ -18,7 +18,7 @@ export default function Home() {
 
       {/* Foto de bienvenida */}
       <div className={styles.photoContainer}>
-        <Image
+        <img
           src="/images/bienvenida.jpeg" // Ruta de la imagen de bienvenida
           alt="Foto de nosotros"
           width={100}
@@ -34,21 +34,21 @@ export default function Home() {
 
       {/* Galería de recuerdos */}
       <div className={styles.gallery}>
-        <Image
+        <img
           src="/images/recuerdo1.jpg" // Ruta de la primera foto de recuerdo
           alt="Recuerdo 1"
           width={150}
           height={150}
           className={styles.galleryPhoto}
         />
-        <Image
+        <img
           src="/images/recuerdo2.jpeg" // Ruta de la segunda foto de recuerdo
           alt="Recuerdo 2"
           width={150}
           height={150}
           className={styles.galleryPhoto}
         />
-        <Image
+        <img
           src="/images/recuerdo3.jpeg" // Ruta de la tercera foto de recuerdo
           alt="Recuerdo 3"
           width={150}

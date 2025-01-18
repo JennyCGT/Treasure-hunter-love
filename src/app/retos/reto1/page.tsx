@@ -36,7 +36,7 @@ export default function Reto1() {
       
       {/* Imagen decorativa */}
       <div className={styles.imageContainer}>
-        <Image
+        <img
           src="/images/reto1.webp" // Imagen decorativa (colócala en public/images)
           alt="Corazón de acertijo"
           width={300}

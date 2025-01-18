@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import Image from 'next/image';
+// import Image from 'next/image';
 import styles from '../../../styles/RetoCard.module.css';
 
 interface Tile {
@@ -75,7 +75,7 @@ export default function Reto5() {
             className={styles.tileImage}
             onClick={() => handleTileClick(index)}
           >
-            <Image src={tile.src} alt={`Puzzle piece ${index + 1}`} width={80} height={80} />
+            <img src={tile.src} alt={`Puzzle piece ${index + 1}`} width={80} height={80} />
           </div>
         ))}
       </div>

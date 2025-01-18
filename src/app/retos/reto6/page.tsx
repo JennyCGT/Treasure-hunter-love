@@ -112,6 +112,59 @@ export default function Reto6() {
           >
             <Popup>Esta no es la ubicación correcta.</Popup>
           </Marker>
+          <Marker
+            position={[40.7128, -74.006] } // NY
+            icon={customIcon}
+            eventHandlers={{ click: () => handleMarkerClick('incorrect') }}
+          >
+            <Popup>Esta no es la ubicación correcta.</Popup>
+          </Marker><Marker
+            position={[48.8566, 2.3522]} // Paris
+            icon={customIcon}
+            eventHandlers={{ click: () => handleMarkerClick('incorrect') }}
+          >
+            <Popup>Esta no es la ubicación correcta.</Popup>
+          </Marker><Marker
+            position={[-33.8688, 151.2093]} // Sidney
+            icon={customIcon}
+            eventHandlers={{ click: () => handleMarkerClick('incorrect') }}
+          >
+            <Popup>Esta no es la ubicación correcta.</Popup>
+          </Marker><Marker
+            position={[55.7558, 37.6173]} // Moscu
+            icon={customIcon}
+            eventHandlers={{ click: () => handleMarkerClick('incorrect') }}
+          >
+            <Popup>Esta no es la ubicación correcta.</Popup>
+          </Marker>
+          <Marker
+            position={[-23.5505, -46.6333] } // Sao Pablo
+            icon={customIcon}
+            eventHandlers={{ click: () => handleMarkerClick('incorrect') }}
+          >
+            <Popup>Esta no es la ubicación correcta.</Popup>
+          </Marker>
+          <Marker
+            position={[34.0522, -118.2437]} // Los Ángeles
+            icon={customIcon}
+            eventHandlers={{ click: () => handleMarkerClick('incorrect') }}
+          >
+            <Popup>Esta no es la ubicación correcta.</Popup>
+          </Marker>
+          <Marker
+            position={[48.8566, 2.3522]} // Francia
+            icon={customIcon}
+            eventHandlers={{ click: () => handleMarkerClick('incorrect') }}
+          >
+            <Popup>Esta no es la ubicación correcta.</Popup>
+          </Marker>
+          <Marker
+            position={[39.9042, 116.4074]} // China
+            icon={customIcon}
+            eventHandlers={{ click: () => handleMarkerClick('incorrect') }}
+          >
+            <Popup>Esta no es la ubicación correcta.</Popup>
+          </Marker>
           {/* Otros marcadores */}
         </MapContainer>
       </div>

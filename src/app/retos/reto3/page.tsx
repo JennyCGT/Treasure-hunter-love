@@ -1,103 +1,72 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import styles from '../../../styles/RetoCard.module.css';
 import { useRouter } from 'next/navigation';
+import styles from '../../../styles/RetoCard.module.css';
 
-interface Card {
-  id: number;
-  value: string;
-  flipped: boolean;
-  matched: boolean;
-}
-
-export default function Reto2() {
-  const [cards, setCards] = useState<Card[]>([]);
-  const [flippedCards, setFlippedCards] = useState<number[]>([]);
+export default function Reto3() {
+  const [answerInput, setAnswerInput] = useState('');
   const [feedback, setFeedback] = useState('');
-  const [attempts, setAttempts] = useState(0);
   const router = useRouter();
-  const maxAttempts = 10;
 
   useEffect(() => {
-    if (localStorage.getItem('reto1Completed') !== 'true') {
+    if (localStorage.getItem('reto2Completed') !== 'true') {
       router.push('/');
     }
+  }, [router]);
 
-    const initialValues = ['😘', '💋', '😍', '🎁', '😻', '🍒', '💘', '🌻'];
-    const shuffledCards = [...initialValues, ...initialValues]
-      .sort(() => Math.random() - 0.5)
-      .map((value, index) => ({ id: index, value, flipped: false, matched: false }));
-    setCards(shuffledCards);
-  }, [router]); // Se incluye 'router' en las dependencias
-
-  useEffect(() => {
-    localStorage.setItem('reto2Completed', 'false');
-  }, []);
-
-  const handleFlip = (index: number) => {
-    if (flippedCards.length === 2 || cards[index].flipped || cards[index].matched) return;
-
-    const newFlippedCards = [...flippedCards, index];
-    const newCards = [...cards];
-    newCards[index].flipped = true;
-    setCards(newCards);
-    setFlippedCards(newFlippedCards);
-
-    if (newFlippedCards.length === 2) {
-      setTimeout(() => checkMatch(newFlippedCards), 1000);
-    }
-  };
-
-  const checkMatch = (flipped: number[]) => {
-    const [firstIndex, secondIndex] = flipped;
-    const newCards = [...cards];
-    const newAttempts = attempts + 1;
-    setAttempts(newAttempts);
-    if (newCards[firstIndex].value === newCards[secondIndex].value) {
-      newCards[firstIndex].matched = true;
-      newCards[secondIndex].matched = true;
-      setFeedback('¡Es un match! ✨');
+  const checkAnswer = () => {
+    const correctAnswer = 'Hola Cristhian, Te Quiero Te Quiero  <3';
+    if (answerInput.trim().toLowerCase() === correctAnswer.toLowerCase()) {
+      setFeedback('¡Correcto! 🎉 Has completado el reto de programación.');
+      localStorage.setItem('reto3Completed', 'true');
+      setTimeout(() => router.push('/retos/reto4'), 1500);
     } else {
-      newCards[firstIndex].flipped = false;
-      newCards[secondIndex].flipped = false;
-      setFeedback('No coinciden, intenta de nuevo. ❌');
-    }
-    setCards(newCards);
-    setFlippedCards([]);
-
-    if (newCards.every((card) => card.matched)) {
-      localStorage.setItem('reto2Completed', 'true');
-      setFeedback('¡Felicidades, completaste el reto de memoria! 💖');
-      setTimeout(() => router.push('/retos/reto3'), 1500);
-    } else if (newAttempts >= maxAttempts) {
-      setFeedback('Has alcanzado el número máximo de intentos. Volviendo a empezar...');
-      setTimeout(() => window.location.reload(), 1500);
+      setFeedback('❌ La respuesta no es correcta, inténtalo de nuevo.');
     }
   };
 
   return (
     <div className={styles.card}>
-      <h2 className={styles.title}>💖 Reto 2: Juego de Memoria</h2>
+      <h2 className={styles.title}>💻 Reto 3: Desafío de Programación</h2>
       <p className={styles.description}>
-        Encuentra todas las parejas de cartas iguales. A veces, unir las piezas correctas es como encontrar
-        a la persona que complementa tu vida. 💑
+        Este reto es especial. Quiero que, por un momento, entres en mi mundo, en aquello que amo hacer: programar.
+        Porque así como en el código buscamos siempre la solución perfecta, en la vida también busco a alguien que
+        complemente mi mundo. ❤️
       </p>
-      <div className={styles.grid}>
-        {cards.map((card, index) => (
-          <div
-            key={card.id}
-            className={
-              card.flipped || card.matched ? styles.cardFlipped : styles.cardBack
-            }
-            onClick={() => handleFlip(index)}
-          >
-            {card.flipped || card.matched ? card.value : '?'}
-          </div>
-        ))}
-      </div>
+
+      <p className={styles.instructions}>
+        Observa el siguiente código de Python y escribe cuál sería la salida al ejecutarlo si ingresas el nombre <strong>"Cristhian"</strong>:
+      </p>
+      
+      <pre className={styles.codeBlock}>
+        {`def mensaje(nombre):
+    saludo = "Hola " + nombre
+    def anidado(repeticiones):
+        constante = "Te Quiero"
+        resultado = []
+        for i in range(repeticiones):
+            resultado.append(constante)
+        return saludo + ", " + " ".join(resultado)
+    return anidado(2)
+
+nombre_usuario = input("Ingresa tu nombre: ")
+print(mensaje(nombre_usuario), ' <3')`}
+      </pre>
+
+      <input
+        type="text"
+        value={answerInput}
+        onChange={(e) => setAnswerInput(e.target.value)}
+        placeholder="Escribe la salida aquí"
+        className={styles.input}
+      />
+
+      <button onClick={checkAnswer} className={styles.btn}>
+        Comprobar
+      </button>
+
       <p className={styles.feedback}>{feedback}</p>
-      <p className={styles.attempts}>Intentos: {attempts} / {maxAttempts}</p>
     </div>
   );
 }
