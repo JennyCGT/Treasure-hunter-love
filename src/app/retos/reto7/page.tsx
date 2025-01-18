@@ -1,71 +1,67 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import styles from '../../../styles/Final.module.css';
+import { useRouter } from 'next/navigation';
+import styles from '../../../styles/RetoCard.module.css';
 
-export default function Final() {
-  const [keyInput, setKeyInput] = useState('');
-  const [showCard, setShowCard] = useState(false);
-  const correctKey = 'Somewhere over the rainbow'; // Clave del reto 7
+export default function Reto7() {
+  const [answerInput, setAnswerInput] = useState('');
+  const [feedback, setFeedback] = useState('');
+  const [showContinue, setShowContinue] = useState(false); // Controlar la visibilidad del botón "Continuar"
+  const router = useRouter();
 
   useEffect(() => {
-    if (localStorage.getItem('reto7Completed') !== 'true') {
-      window.location.href = '/';
+    if (localStorage.getItem('reto6Completed') !== 'true') {
+      router.push('/');
     }
-  }, []);
+  }, [router]);
 
-  const handleVerifyKey = () => {
-    if (keyInput === correctKey) {
-      setShowCard(true);
+  const encryptedMessage = 'U29tZXdoZXJlIG92ZXIgdGhlIHJhaW5ib3cu'; // "Somewhere over the rainbow."
+  const correctKey = '04-07-2016'; // Fecha importante
+  const correctAnswer = 'Somewhere over the rainbow.';
+
+  const handleDecrypt = () => {
+    if (answerInput === correctKey) {
+      setFeedback(
+        `✨ ¡Correcto! El mensaje es: "${correctAnswer}". 
+        Esta fue nuestra fecha de aniversario, un día donde todo comenzó. 
+        Hoy es un nuevo inicio, pero siempre recordaré cómo empezó nuestra historia. ❤️`
+      );
+      localStorage.setItem('reto7Completed', 'true'); // Guardar el avance
+      setShowContinue(true); // Mostrar el botón "Continuar"
     } else {
-      alert('Clave incorrecta. Intenta de nuevo.');
+      setFeedback('❌ Clave incorrecta. Intenta de nuevo.');
     }
   };
 
-  const handleAccept = () => {
-    alert('¡Gracias por aceptar! 💖');
+  const handleContinue = () => {
+    router.push('/retos/final'); // Redirigir al reto final
   };
 
   return (
     <div className={styles.card}>
-      {!showCard ? (
-        <div>
-          <h2 className={styles.title}>Verifica la Clave</h2>
-          <p className={styles.message}>
-            Para desbloquear esta carta especial, ingresa la clave que descubriste en el reto 7:
-          </p>
-          <input
-            type="text"
-            value={keyInput}
-            onChange={(e) => setKeyInput(e.target.value)}
-            placeholder="Ingresa la clave aquí"
-            className={styles.input}
-          />
-          <button className={styles.button} onClick={handleVerifyKey}>
-            Verificar Clave
-          </button>
-        </div>
-      ) : (
-        <div>
-          <h2 className={styles.title}>Mi Carta para Ti</h2>
-          <p className={styles.message}>
-            Querido Cristhian,
-            <br />
-            Después de todo este recorrido y superar juntos cada reto, quiero decirte algo importante. Desde el primer día que te conocí, 
-            supe que eras especial. Juntos hemos compartido risas, sueños y momentos únicos, y aunque sé que no todo es perfecto, quiero que 
-            sepas que siempre estoy dispuesta a enfrentar todo contigo.
-            <br />
-            Quiero que esta carta sea el comienzo de un nuevo capítulo. Un capítulo lleno de aventuras, amor y complicidad. No importa lo que venga, 
-            siempre quiero que sepas que estaré aquí para ti, como sé que tú estarás para mí.
-            <br />
-            Así que, ahora que hemos llegado al final de este camino, solo tengo una pregunta para ti:
-            <br />
-            <strong>¿Quieres ser mi novio? ❤️</strong>
-          </p>
-          <button className={styles.buttonAccept} onClick={handleAccept}>
-            Sí, quiero
-          </button>
-        </div>
+      <h2 className={styles.title}>🔐 Reto 7: Criptografía del Corazón</h2>
+      <p className={styles.description}>
+        Aquí tienes un mensaje encriptado que guarda algo especial. 
+        Desencripta el mensaje usando una clave que representa un día muy importante para nosotros:
+      </p>
+      <pre className={styles.codeBlock}>{encryptedMessage}</pre>
+      <p className={styles.hint}>💡 Pista: Es la fecha en la que comenzó nuestra historia: dd-mm-aaaa.</p>
+      <input
+        type="text"
+        value={answerInput}
+        onChange={(e) => setAnswerInput(e.target.value)}
+        placeholder="Ingresa la clave aquí"
+        className={styles.input}
+      />
+      <button onClick={handleDecrypt} className={styles.btn}>
+        Desencriptar
+      </button>
+      <p className={styles.feedback}>{feedback}</p>
+      {showContinue && (
+        <button onClick={handleContinue} className={styles.continueBtn}>
+          Continuar
+        </button>
       )}
     </div>
   );

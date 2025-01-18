@@ -24,12 +24,6 @@ export default function Final() {
 
   const handleAccept = () => {
     alert('¡Gracias por aceptar! 💖');
-    const hearts = document.querySelectorAll(`.${styles.heart}`);
-    hearts.forEach((heart, index) => {
-      setTimeout(() => {
-        heart.classList.add(styles.show);
-      }, index * 200);
-    });
   };
 
   return (
@@ -37,7 +31,9 @@ export default function Final() {
       {!showCard ? (
         <div>
           <h2 className={styles.title}>Verifica la Clave</h2>
-          <p className={styles.message}>Ingresa la clave del reto 7 para desbloquear la carta:</p>
+          <p className={styles.message}>
+            Para desbloquear esta carta especial, ingresa la clave que descubriste en el reto 7:
+          </p>
           <input
             type="text"
             value={keyInput}
@@ -55,15 +51,16 @@ export default function Final() {
           <p className={styles.message}>
             Querido Cristhian,
             <br />
-            Espero que te haya gustado y divertido un poco, te quiero mucho eres la persona con la que quiero compartir los mejores y los 
+            Después de todo este recorrido y superar juntos cada reto, quiero decirte algo importante. Desde el primer día que te conocí, 
+            supe que eras especial. Juntos hemos compartido risas, sueños y momentos únicos, y aunque sé que no todo es perfecto, quiero que 
+            sepas que siempre estoy dispuesta a enfrentar todo contigo.
             <br />
-            peores momentos de mi vida quiero poder reir y llorar contigo mientras se que estaras para mi y yo para ti.
+            Quiero que esta carta sea el comienzo de un nuevo capítulo. Un capítulo lleno de aventuras, amor y complicidad. No importa lo que venga, 
+            siempre quiero que sepas que estaré aquí para ti, como sé que tú estarás para mí.
             <br />
-            Entonces: 
+            Así que, ahora que hemos llegado al final de este camino, solo tengo una pregunta para ti:
             <br />
-            Después de superar todos estos retos y demostrar tu ingenio, creatividad y perseverancia esta en especual, quiero hacerte una pregunta importante.
-            <br />
-            ¿Quieres ser el afortunado de ser mi novio? ❤️
+            <strong>¿Quieres tener el privilegio de ser mi novio? ❤️</strong>
           </p>
           <button className={styles.button} onClick={handleAccept}>
             Sí, quiero
