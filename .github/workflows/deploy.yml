@@ -25,7 +25,6 @@ jobs:
       - name: Build project
         run: |
           npm run build
-          npm run export
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/pages-action@v1
         with:
