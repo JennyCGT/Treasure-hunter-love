@@ -24,8 +24,8 @@ export default function Reto2() {
       router.push('/');
     }
 
-    // const initialValues = ['😘', '💋', '😍', '🎁', '😻', '🍒', '💘', '🌻'];
-    const initialValues = ['😘', '💋'];
+    const initialValues = ['😘', '💋', '😍', '🎁', '😻', '🍒', '💘', '🌻'];
+    // const initialValues = ['😘', '💋'];
     const shuffledCards = [...initialValues, ...initialValues]
       .sort(() => Math.random() - 0.5)
       .map((value, index) => ({ id: index, value, flipped: false, matched: false }));
