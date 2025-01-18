@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from '../../../styles/RetoCard.module.css';
-import Image from 'next/image';
 
 export default function Reto1() {
   const [respuesta, setRespuesta] = useState('');

@@ -4,6 +4,7 @@ const nextConfig: NextConfig = {
   output: 'export', // Habilita la exportación estática
   trailingSlash: true,
   images: {
+    unoptimized: true, 
     remotePatterns: [
       {
         protocol: 'https',

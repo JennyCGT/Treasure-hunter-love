@@ -36,7 +36,7 @@ export default function Reto3() {
       </p>
 
       <p className={styles.instructions}>
-        Observa el siguiente código de Python y escribe cuál sería la salida al ejecutarlo si ingresas el nombre <strong>"Cristhian"</strong>:
+        Observa el siguiente código de Python y escribe cuál sería la salida al ejecutarlo si ingresas el nombre <strong>Cristhian</strong>:
       </p>
       
       <pre className={styles.codeBlock}>
