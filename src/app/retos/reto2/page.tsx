@@ -29,7 +29,7 @@ export default function Reto2() {
       .sort(() => Math.random() - 0.5)
       .map((value, index) => ({ id: index, value, flipped: false, matched: false }));
     setCards(shuffledCards);
-  }, []);
+  }, [router]); // Se incluye 'router' en las dependencias
 
   useEffect(() => {
     localStorage.setItem('reto2Completed', 'false');
@@ -52,7 +52,7 @@ export default function Reto2() {
   const checkMatch = (flipped: number[]) => {
     const [firstIndex, secondIndex] = flipped;
     const newCards = [...cards];
-    let newAttempts = attempts;
+    const newAttempts = attempts + 1;
     setAttempts(newAttempts);
 
     if (newCards[firstIndex].value === newCards[secondIndex].value) {
@@ -60,8 +60,6 @@ export default function Reto2() {
       newCards[secondIndex].matched = true;
       setFeedback('¡Es un match! ✨');
     } else {
-      newAttempts= newAttempts+1;
-      setAttempts(newAttempts);
       newCards[firstIndex].flipped = false;
       newCards[secondIndex].flipped = false;
       setFeedback('No coinciden, intenta de nuevo. ❌');

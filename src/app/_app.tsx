@@ -1,4 +1,3 @@
-import type { AppProps } from 'next/app';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 

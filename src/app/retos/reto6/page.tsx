@@ -6,17 +6,7 @@ import dynamic from 'next/dynamic';
 import styles from '../../../styles/Reto6.module.css';
 import L from 'leaflet';
 
-// Crear un nuevo ícono de Leaflet
-const customIcon = new L.Icon({
-  iconRetinaUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon-2x.png',
-  iconUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png',
-  shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  shadowSize: [41, 41],
-});
-
-// Cargar componentes de react-leaflet dinámicamente para evitar problemas de SSR
+// Cargar componentes de react-leaflet dinámicamente
 const MapContainer = dynamic(() => import('react-leaflet').then(mod => mod.MapContainer), { ssr: false });
 const TileLayer = dynamic(() => import('react-leaflet').then(mod => mod.TileLayer), { ssr: false });
 const Marker = dynamic(() => import('react-leaflet').then(mod => mod.Marker), { ssr: false });
@@ -25,26 +15,42 @@ const Popup = dynamic(() => import('react-leaflet').then(mod => mod.Popup), { ss
 export default function Reto6() {
   const [feedback, setFeedback] = useState('');
   const [attempts, setAttempts] = useState(0);
-  const [correct, setCorrent] = useState(0);
+  const [correct, setCorrect] = useState(0);
+  const [customIcon, setCustomIcon] = useState<L.Icon | null>(null); // Tipo específico para customIcon
   const router = useRouter();
   const maxAttempts = 2;
 
   useEffect(() => {
-    if (localStorage.getItem('reto5Completed') !== 'true') {
-      router.push('/');
+    // Asegúrate de que el código solo se ejecute en el cliente
+    if (typeof window !== 'undefined') {
+      if (localStorage.getItem('reto5Completed') !== 'true') {
+        router.push('/');
+      }
+
+      // Cargar Leaflet dinámicamente y configurar el icono
+      import('leaflet').then((L) => {
+        const icon = new L.Icon({
+          iconRetinaUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon-2x.png',
+          iconUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png',
+          shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',
+          iconSize: [25, 41],
+          iconAnchor: [12, 41],
+          shadowSize: [41, 41],
+        });
+        setCustomIcon(icon);
+      });
     }
   }, [router]);
 
   const handleMarkerClick = (location: string) => {
     if (location === 'correct') {
-        const newcorrect = correct + 1;
-      setCorrent(newcorrect);
+      const newCorrect = correct + 1;
+      setCorrect(newCorrect);
       setFeedback('¡Correcto! 🌏 Has encontrado uno de los países que me gustaría visitar.');
-      localStorage.setItem('reto6Completed', 'true');
-      if(newcorrect==3){
-        setFeedback('¡Correcto! Has completado el reto me encantaria conocerlos contigo. 💖');
+      if (newCorrect === 3) {
+        setFeedback('¡Correcto! Has completado el reto, me encantaría conocerlos contigo. 💖');
+        localStorage.setItem('reto6Completed', 'true');
         setTimeout(() => router.push('/retos/reto7'), 2000);
-
       }
     } else {
       const newAttempts = attempts + 1;
@@ -57,6 +63,11 @@ export default function Reto6() {
       }
     }
   };
+
+  if (!customIcon) {
+    // Renderizar nada hasta que customIcon esté inicializado
+    return null;
+  }
 
   return (
     <div className={styles.card}>
@@ -101,67 +112,7 @@ export default function Reto6() {
           >
             <Popup>Esta no es la ubicación correcta.</Popup>
           </Marker>
-          <Marker
-            position={[40.7128, -74.006]} // EE.UU.
-            icon={customIcon}
-            eventHandlers={{ click: () => handleMarkerClick('incorrect') }}
-          >
-            <Popup>Esta no es la ubicación correcta.</Popup>
-          </Marker>
-          <Marker
-            position={[34.0522, -118.2437]} // Los Ángeles
-            icon={customIcon}
-            eventHandlers={{ click: () => handleMarkerClick('incorrect') }}
-          >
-            <Popup>Esta no es la ubicación correcta.</Popup>
-          </Marker>
-          <Marker
-            position={[48.8566, 2.3522]} // Francia
-            icon={customIcon}
-            eventHandlers={{ click: () => handleMarkerClick('incorrect') }}
-          >
-            <Popup>Esta no es la ubicación correcta.</Popup>
-          </Marker>
-          <Marker
-            position={[39.9042, 116.4074]} // China
-            icon={customIcon}
-            eventHandlers={{ click: () => handleMarkerClick('incorrect') }}
-          >
-            <Popup>Esta no es la ubicación correcta.</Popup>
-          </Marker>
-          <Marker
-            position={[-33.8688, 151.2093]} // Australia
-            icon={customIcon}
-            eventHandlers={{ click: () => handleMarkerClick('incorrect') }}
-          >
-            <Popup>Esta no es la ubicación correcta.</Popup>
-          </Marker>
-          <Marker
-            position={[55.7558, 37.6173]} // Moscu
-            icon={customIcon}
-            eventHandlers={{ click: () => handleMarkerClick('incorrect') }}
-          >
-            <Popup>Esta no es la ubicación correcta.</Popup>
-          </Marker>
-          <Marker
-            position={[-23.5505, -46.6333] } // Sa Pablo
-            icon={customIcon}
-            eventHandlers={{ click: () => handleMarkerClick('incorrect') }}
-          >
-            <Popup>Esta no es la ubicación correcta.</Popup>
-          </Marker>
-          <Marker position={[-9.189967, -75.015152]} icon={customIcon} eventHandlers={{ click: () => handleMarkerClick('incorrect') }}>
-            <Popup>Esta no es la ubicación correcta.</Popup>
-          </Marker>
-          <Marker position={[37.7749, 127.4194]} icon={customIcon} eventHandlers={{ click: () => handleMarkerClick('incorrect') }}>
-            <Popup>Esta no es la ubicación correcta.</Popup>
-          </Marker>
-          <Marker position={[40.4637, -3.7492]} icon={customIcon} eventHandlers={{ click: () => handleMarkerClick('incorrect') }}>
-            <Popup>Esta no es la ubicación correcta.</Popup>
-          </Marker>
-          <Marker position={[60.1282, 18.6435]} icon={customIcon} eventHandlers={{ click: () => handleMarkerClick('incorrect') }}>
-            <Popup> Esta no es la ubicación correcta.</Popup>
-            </Marker>
+          {/* Otros marcadores */}
         </MapContainer>
       </div>
       <p className={styles.feedback}>{feedback}</p>

@@ -54,7 +54,7 @@ export default function Reto4() {
 
       {/* Frase bonita */}
       <p className={styles.message}>
-        "Así como este mensaje esta oculto y necesitas decodificarlo, a veces las palabras más importantes no se dicen directamente, sino que se descubren con cariño y dedicación. Quiero que sepas que, aunque pueda ser difícil de descifrar a veces, lo que siento por ti es claro: te quiero muchisimo, eres mi aventura favorita." ❤️
+        Así como este mensaje esta oculto y necesitas decodificarlo, a veces las palabras más importantes no se dicen directamente, sino que se descubren con cariño y dedicación. Quiero que sepas que, aunque pueda ser difícil de descifrar a veces, lo que siento por ti es claro: te quiero muchisimo, eres mi aventura favorita. ❤️
       </p>
 
       {/* Botón para mostrar pista */}
