@@ -31,5 +31,5 @@ jobs:
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           accountId: ${{ secrets.YOUR_CLOUDFLARE_ACCOUNT_ID }}
-          projectName: <treasure-hunter>
+          projectName: treasure-hunter-love
           directory: ./out
