@@ -53,14 +53,14 @@ export default function Reto2() {
   const checkMatch = (flipped: number[]) => {
     const [firstIndex, secondIndex] = flipped;
     const newCards = [...cards];
-
+    let newAttempts = attempts 
 
     if (newCards[firstIndex].value === newCards[secondIndex].value) {
       newCards[firstIndex].matched = true;
       newCards[secondIndex].matched = true;
       setFeedback('¡Es un match! ✨');
     } else {
-    const newAttempts = attempts + 1;
+        newAttempts = newAttempts+ 1;
     setAttempts(newAttempts);
       newCards[firstIndex].flipped = false;
       newCards[secondIndex].flipped = false;
